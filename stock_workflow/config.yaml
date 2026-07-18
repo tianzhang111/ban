@@ -1,0 +1,66 @@
+﻿# ===========================================================
+# A股智能体概念监控推送 — 配置文件
+# ===========================================================
+
+# --- 东方财富概念板块配置 ---
+concept_board:
+  # 搜索关键词：智能体 / AIAgent
+  keywords: ["智能体", "AIAgent", "AI Agent"]
+  # 板块类型: 4 = 概念板块
+  board_type: 4
+
+# --- 评分权重 ---
+scoring:
+  weights:
+    turnover: 0.40       # 成交额权重
+    change_pct: 0.30     # 涨跌幅权重
+    net_inflow: 0.20     # 资金净流入权重
+    news_mentions: 0.10  # 新闻提及权重
+  top_n: 10              # 取 Top N
+
+# --- 推送渠道配置（按需填写）---
+push:
+  # 企业微信机器人 Webhook
+  wecom:
+    enabled: false
+    webhook_url: ""
+
+  # 飞书机器人 Webhook
+  feishu:
+    enabled: false
+    webhook_url: ""
+
+  # 钉钉机器人 Webhook
+  dingtalk:
+    enabled: false
+    webhook_url: ""
+
+  # Telegram Bot
+  telegram:
+    enabled: false
+    bot_token: ""
+    chat_id: ""
+
+  # 邮件 (SMTP)
+  email:
+    enabled: false
+    smtp_server: "smtp.qq.com"
+    smtp_port: 465
+    smtp_use_ssl: true
+    sender: ""
+    password: ""
+    recipients: []
+
+# --- 调度 ---
+scheduler:
+  # 每天上午 11:00 北京时间
+  hour: 11
+  minute: 0
+  timezone: "Asia/Shanghai"
+
+# --- 日志 ---
+logging:
+  level: "INFO"
+  file: "logs/stock_workflow.log"
+  max_bytes: 10485760  # 10MB
+  backup_count: 7
